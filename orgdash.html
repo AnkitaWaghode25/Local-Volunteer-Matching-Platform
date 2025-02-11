@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Organization Dashboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background: linear-gradient(to right, #fbfcff, #0f244d);
+      color: #f5dbdb;
+    }
+    h1 {
+      text-align: center;
+      color: #f3f1f5;
+    }
+    .dashboard-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 4fr));
+      gap: 50px;
+      margin: 20px auto;
+      max-width: 1200px;
+     
+    }
+    .card {
+      background: #09031b;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .card h2 {
+      margin-top: 0;
+    }
+    .card button {
+      background: #1374c9;
+      color: #fff;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .card button:hover {
+      background: #4338ca;
+    }
+    .progress-bar {
+      background: #ddd;
+      border-radius: 5px;
+      overflow: hidden;
+      height: 8px;
+      margin-top: 8px;
+    }
+    .progress-bar span {
+      display: block;
+      height: 100%;
+    }
+    .bar-volunteers {
+      width: 50%;
+      background: #6d28d9;
+    }
+    .bar-hours {
+      width: 75%;
+      background: #9333ea;
+    }
+    .bar-attendance {
+      width: 85%;
+      background: #c084fc;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Organization Dashboard</h1>
+  <p style="text-align: center;">Manage volunteer opportunities, events, and more.</p>
+
+
+  <div class="dashboard-container">
+    <div class="card">
+      <h2>Volunteer Opportunities</h2>
+      <a href="orgevent.html" > <button>Post New Opportunity</button> </a>
+      
+      <p>Recent Opportunities:</p>
+      <ul>
+        <li>Community Clean-up</li>
+        <li>Food Bank Assistant</li>
+        <li>Senior Care Helper</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h2>Events Management</h2>
+     <a href="orgevent.html" > <button>Create New Event</button> </a>
+      <p>Upcoming Events:</p>
+      <ul>
+        <li>Annual Fundraiser (May 15)</li>
+        <li>Volunteer Appreciation Day (June 1)</li>
+        <li>Community Workshop (June 10)</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h2>Volunteer Participation</h2>
+      <p>Total Volunteers: 250</p>
+      <div class="progress-bar"><span class="bar-volunteers"></span></div>
+      <p>Hours Contributed: 1,500</p>
+      <div class="progress-bar"><span class="bar-hours"></span></div>
+      <p>Event Attendance: 85%</p>
+      <div class="progress-bar"><span class="bar-attendance"></span></div>
+    </div>
+    <div class="card">
+      <h2>Notifications</h2>
+      <button>Send New Notification</button>
+      <p>Recent Notifications:</p>
+      <ul>
+        <li>Event Reminder: Community Clean-up</li>
+        <li>Thank You: Food Bank Volunteers</li>
+        <li>New Opportunity: Senior Care Program</li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>

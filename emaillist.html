@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email List</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; }
+        h2 { color: #333; }
+        #email-list { margin-top: 20px; }
+        ul { list-style-type: none; padding: 0; }
+        li { background: #f4f4f4; margin: 5px; padding: 10px; border-radius: 5px; }
+    </style>
+</head>
+<body>
+
+    <h2>Email List</h2>
+    <button onclick="fetchEmails()">Load Emails</button>
+    <div id="email-list"></div>
+
+    <script>
+        function fetchEmails() {
+            fetch('fetch_emails.php')
+                .then(response => response.json())
+                .then(data => {
+                    let emailList = '<ul>';
+                    data.forEach(user => {
+                        emailList += `<li>${user.email}</li>`;
+                    });
+                    emailList += '</ul>';
+                    document.getElementById('email-list').innerHTML = emailList;
+                })
+                .catch(error => console.error('Error fetching emails:', error));
+        }
+    </script>
+
+</body>
+</html>

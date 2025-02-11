@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organization Profile</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f6f8;
+            color: #333;
+        }
+
+        header {
+            background-color: #003366;
+            color: white;
+            padding: 30px;
+            text-align: center;
+            font-size: 2em;
+            letter-spacing: 2px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #003366;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .events-section, .event-form-section {
+            margin: 40px auto;
+            padding: 30px;
+            max-width: 1100px;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .events-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .event-box {
+            background-color: #fff;
+            border: 2px solid #003366;
+            border-radius: 10px;
+            padding: 20px;
+            width: 280px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .event-box:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .event-box h3 {
+            font-size: 1.4em;
+            color: #003366;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .event-box p {
+            font-size: 1em;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .event-form-section input,
+        .event-form-section textarea,
+        .event-form-section button {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1em;
+            box-sizing: border-box;
+        }
+
+        .event-form-section input[type="text"],
+        .event-form-section input[type="date"],
+        .event-form-section input[type="time"],
+        .event-form-section textarea {
+            background-color: #f9f9f9;
+        }
+
+        .event-form-section button {
+            background-color: #003366;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .event-form-section button:hover {
+            background-color: #001f3d;
+        }
+
+        .event-form-section label {
+            display: block;
+            font-size: 1.1em;
+            color: #003366;
+            margin-bottom: 8px;
+        }
+
+        .event-form-section .checkbox-label {
+            display: inline-block;
+            font-size: 1em;
+            color: #003366;
+            margin-left: 8px;
+        }
+
+        .event-form-section textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .event-form-section input[type="checkbox"] {
+            transform: scale(1.3);
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        Organization Profile
+    </header>
+
+    <!-- Upcoming Events Section -->
+    <section class="events-section">
+        <h2>Upcoming Events</h2>
+        <div class="events-container" id="events-container">
+            <!-- Dynamic event boxes will be added here -->
+        </div>
+    </section>
+
+    <!-- Event Creation Form -->
+    <section class="event-form-section">
+        <h2>Create New Event</h2>
+        <form id="event-form" action="insert_event.php" method="POST">
+            <label for="event-name">Event Name:</label>
+            <input type="text" id="event-name" name="event-name" required>
+        
+            <label for="event-description">Event Description:</label>
+            <textarea id="event-description" name="event-description" required></textarea>
+        
+            <label for="event-date">Event Date:</label>
+            <input type="date" id="event-date" name="event-date" required>
+        
+            <label for="event-time">Event Time:</label>
+            <input type="time" id="event-time" name="event-time" required>
+        
+            <label for="event-location">Event Location:</label>
+            <input type="text" id="event-location" name="event-location" required>
+        
+            <label for="past-activities">Past Activities (Optional):</label>
+            <textarea id="past-activities" name="past-activities"></textarea>
+        
+            <label for="event-certificates">Certificates/Goodies:</label>
+            <input type="checkbox" id="event-certificates" name="event-certificates">
+            <span class="checkbox-label">Provide certificates/goodies</span>
+        
+            <button type="submit">Create Event</button>
+        </form>
+        
+    </section>
+
+    <script>
+        document.getElementById("event-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+            
+            // Collect form data
+            const eventName = document.getElementById("event-name").value;
+            const eventDescription = document.getElementById("event-description").value;
+            const eventDate = document.getElementById("event-date").value;
+            const eventTime = document.getElementById("event-time").value;
+            const eventLocation = document.getElementById("event-location").value;
+            const pastActivities = document.getElementById("past-activities").value;
+            const eventCertificates = document.getElementById("event-certificates").checked ? "Yes" : "No";
+            
+            // Create event box
+            const eventBox = document.createElement("div");
+            eventBox.classList.add("event-box");
+
+            const eventTitle = document.createElement("h3");
+            eventTitle.textContent = eventName;
+            eventBox.appendChild(eventTitle);
+
+            const eventDetails = document.createElement("p");
+            eventDetails.innerHTML = `<strong>Description:</strong> ${eventDescription}<br>
+                                      <strong>Date:</strong> ${eventDate}<br>
+                                      <strong>Time:</strong> ${eventTime}<br>
+                                      <strong>Location:</strong> ${eventLocation}<br>
+                                      <strong>Past Activities:</strong> ${pastActivities || "N/A"}<br>
+                                      <strong>Certificates/Goodies:</strong> ${eventCertificates}`;
+            eventBox.appendChild(eventDetails);
+            
+            // Add to events container
+            document.getElementById("events-container").appendChild(eventBox);
+            
+            // Clear the form after submission
+            document.getElementById("event-form").reset();
+        });
+    </script>
+</body>
+</html>

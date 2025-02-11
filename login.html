@@ -1,0 +1,200 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Volunteer Matching</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f8f0f0;
+            color: white;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 500px;
+            background: #0f3460;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 15px;
+        }
+
+        .tab {
+            cursor: pointer;
+            padding: 10px;
+            width: 100%;
+            text-align: center;
+            background: #e94560;
+            border-radius: 4px;
+            transition: 0.3s;
+        }
+
+        .tab.active {
+            background: #e94560;
+        }
+
+        .form {
+            display: none;
+        }
+
+        .form.active {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 8px;
+            border: none;
+            border-radius: 4px;
+            background: #1a1a2e;
+            color: white;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            background: #e94560;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #ff0055;
+        }
+
+        .switch {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .switch a {
+            color: #e94560;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="register-container">
+        <h2>Create an Account</h2>
+        <p class="switch">Already have an account? <a id="sign-in-link">Sign In</a></p>
+        <br>
+
+        <div class="tabs">
+            
+            <div class="tab" id="organization-tab">Volunteer</div>
+        </div>
+
+        <form class="form active" id="volunteer-form" method="POST" action="volconnect.php">
+            <div class="form-group">
+                <label for="v-first-name">First Name</label>
+                <input type="text" id="v-first-name"  name="first_name" required>
+            </div>
+            <div class="form-group">
+                <label for="v-last-name">Last Name</label>
+                <input type="text" id="v-last-name" name="last_name" required>
+            </div>
+            <div class="form-group">
+                <label for="v-email">Email</label>
+                <input type="email" id="v-email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="v-password">Password</label>
+                <input type="password" id="v-password" name="password" required>
+            </div>
+   
+   <div class="form-group">
+                   <label for="options">select your interest:</label>
+<select id="options" name="interest">
+  <option value="option1">Community Clean-Up Drives</option>
+  <option value="option2">Disaster Relief & Emergency Response Training</option>
+  <option value="option3">Youth & Student Volunteering Programs</option>
+   <option value="option4">Mentorship & Tutoring Sessions</option>
+    <option value="option5">Holiday Giving & Seasonal Volunteering</option>
+
+</select>
+  
+   </div>
+
+  
+                 <button type="submit">Create Account</button>
+        </form>
+    </div>
+
+    <div class="container" id="login-container" style="display: none;">
+        <h2>Welcome to the Login Page</h2>
+        <p class="switch">Don't have an account? <a id="register-link">Register</a></p>
+
+        <div class="tabs">
+            <div class="tab active" id="login-volunteer-tab">Volunteer</div>
+           
+        </div>
+
+        <form class="form active" id="login-volunteer-form" method="POST" action="vollogin.php">
+            <div class="form-group">
+                <label for="v-username">Email</label>
+                <input type="email" id="v-username" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="v-password-login">Password</label>
+                <input type="password" id="v-password-login" name="password" required>
+            </div>
+            <p class="switch"><a href="#">Forgot Password?</a></p>
+            <button type="submit">Login</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("sign-in-link").addEventListener("click", function() {
+            document.getElementById("register-container").style.display = "none";
+            document.getElementById("login-container").style.display = "block";
+            alert("Welcome to the Login Page!");
+        });
+
+        document.getElementById("register-link").addEventListener("click", function() {
+            document.getElementById("login-container").style.display = "none";
+            document.getElementById("register-container").style.display = "block";
+        });
+
+       
+
+    </script>
+</body>
+</html>
